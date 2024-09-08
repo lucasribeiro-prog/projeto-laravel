@@ -38,13 +38,13 @@ return new class extends Migration
     {
         //Removendo o relacionamento com a tabela produto_detalhes
         Schema::table('produto_detalhes', function (Blueprint $table) {
-            $table->dropForeign('unidade_id');
+            $table->dropForeign(['unidade_id']);
             $table->dropColumn('unidade_id');
         });
 
         //Removendo o relacionamento com a tabela produtos
         Schema::table('produtos', function (Blueprint $table) {
-            $table->dropForeign('unidade_id');
+            $table->dropForeign(['unidade_id']);
             $table->dropColumn('unidade_id');
         });
 
