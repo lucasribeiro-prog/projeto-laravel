@@ -9,8 +9,7 @@
 
         <div class="informacao-pagina">
             @component('site.layouts._components.form', ['class' => 'borda-preta'])
-                <p>Sua solicitação será atendida em breve</p>
-                <p>O tempo médio de retorno é de 24h</p>
+
             @endcomponent
         </div>  
     </div>

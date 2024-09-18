@@ -8,7 +8,7 @@
         <br>
         <input name="email" type="text" placeholder="E-mail" class="{{$class}}">
         <br>
-        <select class="{{$class}}">
+        <select name="motivo_contato" class="{{$class}}">
             <option value="">Qual o motivo do contato?</option>
             <option value="1">Dúvida</option>
             <option value="2">Elogio</option>
@@ -17,6 +17,11 @@
         <br>
         <textarea name="mensagem" class="{{$class}}">Preencha aqui a sua mensagem</textarea>
         <br>
+        @if ($errors->any())
+            <p style="color:red;">Todos os campos devem ser preenchidos</p>
+        @elseif(session('success'))
+            <p style="color:green;">{{ session('success') }}</p>
+        @endif
         <button type="submit" class="{{$class}}">ENVIAR</button>
     </form>
 </div>
