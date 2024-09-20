@@ -70,6 +70,11 @@ button:hover {
     padding: 20px 0px 10px 0px;
 }
 
+
+.form {
+    margin-top: 100px;
+}
+
 .logo {
     width: 50px;
     float: left;

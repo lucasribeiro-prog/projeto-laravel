@@ -1,21 +1,28 @@
 <div class="contato-principal">
     {{ $slot }}
-    <form action="{{ route('site.contato') }}" method="POST">
+    <form action="{{ route('site.contato') }}" method="POST" class="{{$form}}">
         @csrf
-        <input name="nome" type="text" placeholder="Nome" class="{{$class}}">
+        <input name="nome" value="{{ old('nome') }}" type="text" placeholder="Nome" class="{{$class}}">
         <br>
-        <input name="telefone" type="text" placeholder="Telefone" class="{{$class}}">
+        <input name="telefone" value="{{ old('telefone') }}" type="text" placeholder="Telefone" class="{{$class}}">
         <br>
-        <input name="email" type="text" placeholder="E-mail" class="{{$class}}">
+        <input name="email" value="{{ old('email') }}" type="text" placeholder="E-mail" class="{{$class}}">
         <br>
         <select name="motivo_contato" class="{{$class}}">
             <option value="">Qual o motivo do contato?</option>
-            <option value="1">Dúvida</option>
-            <option value="2">Elogio</option>
-            <option value="3">Reclamação</option>
+            @foreach($motivo_contato as $key => $value)
+                <option value="{{$key}}" {{old('motivo_contato') == $key ? 'selected' : ''}}>{{$value}}</option>
+            @endforeach
         </select>
         <br>
-        <textarea name="mensagem" class="{{$class}}">Preencha aqui a sua mensagem</textarea>
+        <textarea name="mensagem" class="{{$class}}">
+        @if( old('mensagem') != '')
+            {{ old('mensagem') }}
+        @else
+            Preencha aqui a sua mensagem
+        @endif
+        
+        </textarea>
         <br>
         @if ($errors->any())
             <p style="color:red;">Todos os campos devem ser preenchidos</p>

@@ -8,8 +8,14 @@ use App\Models\SiteContato;
 class ContatoController extends Controller
 {
     public function exibirContato() {
+        $motivo_contato = [
+            1 => 'Dúvida',
+            2 => 'Elogio',
+            3 => 'Reclamação'
+        ];
+        
 
-        return view('site.contato');
+        return view('site.contato', ['motivo_contato' => $motivo_contato]);
         
     }
 
@@ -17,6 +23,7 @@ class ContatoController extends Controller
                 /*echo '<pre>';
         dd($request);
         echo '</pre>';*/
+
         $request->validate([
             'nome' => 'required',
             'telefone' => 'required',
@@ -37,6 +44,6 @@ class ContatoController extends Controller
         var_dump($contato->getAttributes());
         echo '</pre>';*/
 
-        return redirect()->back()->with('success', 'Sua solicitação será atendida em breve');
+        return redirect()->back()->with('success', 'Sua solicitação será atendida em breve!');
     }
 }
