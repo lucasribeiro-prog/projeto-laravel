@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AutenticacaoMiddleware;
 use App\Http\Middleware\LogAcessoMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -20,4 +21,17 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->append(LogAcessoMiddleware::class);
-    })->create();
+
+    })->withMiddleware(function(Middleware $middleware) {
+        $middleware->alias([
+            'autenticacao' => AutenticacaoMiddleware::class,
+            'log' => LogAcessoMiddleware::class,
+        ]);
+
+    })->withMiddleware(function(Middleware $middleware) {
+        $middleware->web(append: [
+            LogAcessoMiddleware::class,
+        ]);
+    })
+    ->create();
+    
