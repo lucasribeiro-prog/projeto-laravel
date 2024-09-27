@@ -14,12 +14,20 @@
         </div>
 
         <div class="informacao-pagina">
-            <form action="{{route('app.fornecedor.listar')}}" method="POST" class="form-fornecedores">
+            <form action="{{route('app.fornecedor.adicionar')}}" method="POST" class="form-fornecedores">
                 @csrf
-                <input type="text" name="nome" placeholder="Nome">
-                <input type="text" name="site" placeholder="Site">
-                <input type="text" name="uf" placeholder="UF">
-                <input type="text" name="email" placeholder="E-mail">
+                <input type="text" value="{{old('nome')}}" name="nome" placeholder="Nome">
+                {{$errors->has('nome') ? $errors->first('nome') : ''}}
+                
+                <input type="text" value="{{old('site')}}" name="site" placeholder="Site">
+                {{$errors->has('site') ? $errors->first('site') : ''}}
+
+                <input type="text" value="{{old('uf')}}" name="uf" placeholder="UF">
+                {{$errors->has('uf') ? $errors->first('uf') : ''}}
+
+                <input type="text" value="{{old('email')}}" name="email" placeholder="E-mail">
+                {{$errors->has('email') ? $errors->first('email') : ''}}
+
                 <button type="submit">Cadastrar</button>
             </form>
         </div>  

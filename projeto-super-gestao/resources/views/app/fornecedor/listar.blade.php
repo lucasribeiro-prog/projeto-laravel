@@ -8,8 +8,8 @@
 
         <div class="menu">
             <ul>
-                <li><a href="">Novo</a></li>
-                <li><a href="">Consultar</a></li>
+                <li><a href="{{ route('app.fornecedor.adicionar') }}">Novo</a></li>
+                <li><a href="{{ route('app.fornecedor.index') }}">Consultar</a></li>
             </ul>
         </div>
 
