@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Fornecedor;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class FornecedorController extends Controller
 {
@@ -42,7 +43,16 @@ class FornecedorController extends Controller
         return view('app.fornecedor.adicionar');
     }
 
-    public function listar() {
-        return view('app.fornecedor.listar');
+    public function listar(Request $request) {
+        
+        $fornecedor = Fornecedor::
+        where('nome', 'like', '%'. $request->nome .'%')
+        ->where('site', 'like', '%'. $request->site .'%')
+        ->where('uf', 'like', '%'. $request->uf .'%')
+        ->where('email', 'like', '%'. $request->email .'%')
+        ->get();
+
+        
+        return view('app.fornecedor.listar', ['fornecedor' => $fornecedor]);
     }
 }
