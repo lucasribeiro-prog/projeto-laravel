@@ -41,6 +41,7 @@
                     
                 </tbody>
             </table>
+            {{$fornecedor->appends($request)->links()}}
         </div>  
     </div>
 @endsection

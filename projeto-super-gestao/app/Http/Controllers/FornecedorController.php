@@ -66,10 +66,10 @@ class FornecedorController extends Controller
         ->where('site', 'like', '%'. $request->site .'%')
         ->where('uf', 'like', '%'. $request->uf .'%')
         ->where('email', 'like', '%'. $request->email .'%')
-        ->get();
+        ->simplePaginate(2);
 
         
-        return view('app.fornecedor.listar', ['fornecedor' => $fornecedor]);
+        return view('app.fornecedor.listar', ['fornecedor' => $fornecedor, 'request' => $request->all()]);
     }
 
     public function editar($id) {
