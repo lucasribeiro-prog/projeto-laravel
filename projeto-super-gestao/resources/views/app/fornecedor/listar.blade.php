@@ -35,7 +35,7 @@
                             <td>{{$valor->uf}}</td>
                             <td>{{$valor->email}}</td>
                             <td>Excluir</td>
-                            <td>Editar</td>
+                            <td><a href="{{route('app.fornecedor.editar', $valor->id)}}">Editar</a></td>
                         </tr>
                     @endforeach
                     
