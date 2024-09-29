@@ -26,6 +26,6 @@ Route::middleware(['autenticacao:padrao'])->prefix('/app')->group(function() {
      Route::get('/fornecedor/editar{id}', [\App\Http\Controllers\FornecedorController::class, 'editar'])->name('app.fornecedor.editar');
 
 
-    Route::get('/produto', [\App\Http\Controllers\ProdutoController::class, 'index'])->name('app.produto');
+    Route::resource('produto', \App\Http\Controllers\ProdutoController::class);
 });
 
