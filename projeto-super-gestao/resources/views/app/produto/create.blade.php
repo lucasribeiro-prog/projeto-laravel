@@ -17,21 +17,22 @@
             <form action="{{route('produto.store')}}" method="POST" class="form-fornecedores">
                 @csrf
 
-                <input type="text" value="" name="nome" placeholder="Nome">
+                <input type="text" value="{{old('nome')}}" name="nome" placeholder="Nome">
+                {{$errors->has('nome') ? $errors->first('nome') : ''}}
                 
-                
-                <input type="text" value="" name="descricao" placeholder="Descricao">
-                
+                <input type="text" value="{{old('descricao')}}" name="descricao" placeholder="Descricao">
+                {{$errors->has('descricao') ? $errors->first('descricao') : ''}}
 
-                <input type="text" value="" name="peso" placeholder="Peso">
-                
+                <input type="text" value="{{old('peso')}}" name="peso" placeholder="Peso">
+                {{$errors->has('peso') ? $errors->first('peso') : ''}}
 
                 <select name="unidade_id">
                         <option value="">Selecione uma unidade de medida</option>
                     @foreach ($unidade as $value)
-                        <option value="{{$value->id}}">{{$value->descricao}}</option>
+                        <option value="{{$value->id}}" {{old('unidade_id') == $value->id ? 'selected' : ''}}>{{$value->descricao}}</option>
                     @endforeach
                 </select>
+                {{$errors->has('unidade_id')?$errors->first('unidade_id'):''}}
                 
 
                 <button type="submit">Cadastrar</button>

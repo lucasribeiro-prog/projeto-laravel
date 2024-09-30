@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Produto;
 use App\Models\Unidade;
 use Illuminate\Http\Request;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class ProdutoController extends Controller
 {
@@ -32,6 +33,24 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
+        $regra = [
+            'nome' => 'required|min:3|max:40',
+            'descricao' => 'required|min:3|max:2000',
+            'peso' => 'required|integer',
+            'unidade_id' => 'exists:unidades,id'
+        ];
+
+        $feedback = [
+            'required' => 'O campo :attribute deve ser preenchido',
+            'min' => 'O campo :attribute deve possuir no mínimo 3 caracteres',
+            'nome.max' => 'O nome deve conter no máximo 40 caracteres',
+            'descricao.max' => 'A descrição deve conter no máximo 2000 caracteres',
+            'peso.integer' => 'caracter inválido',
+            'unidade_id.exists' => 'Selecione um opção válida'
+        ];
+
+        $request->validate($regra, $feedback);
+
         Produto::create($request->all());
         return redirect()->route('produto.index');
     }
