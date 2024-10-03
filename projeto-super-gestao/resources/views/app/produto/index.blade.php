@@ -3,7 +3,7 @@
 @section('conteudo')
     <div class="conteudo-pagina">
         <div class="titulo-pagina2">
-            <h1>Produto</h1>
+            <h1>Listagem de Produto</h1>
         </div>
 
         <div class="menu">
@@ -21,9 +21,9 @@
                         <th>Descrição</th>
                         <th>Peso</th>
                         <th>Unidade_id</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th>Comprimento</th>
+                        <th>Altura</th>
+                        <th>Largura</th>
                     </tr>
                 </thead>
 
@@ -35,6 +35,9 @@
                             <td>{{$valor->descricao}}</td>
                             <td>{{$valor->peso}}</td>
                             <td>{{$valor->unidade_id}}</td>
+                            <td>{{$valor->produtoDetalhe->comprimento ?? ''}}</td>
+                            <td>{{$valor->produtoDetalhe->altura ?? ''}}</td>
+                            <td>{{$valor->produtoDetalhe->largura ?? ''}}</td>
                             <td><a href="{{route('produto.show', ['produto' => $valor->id])}}">Visualizar</a></td>
                             <td>
                                 <form id="form_{{$valor->id}}" action="{{route('produto.destroy', ['produto' => $valor->id])}}" method="POST">
