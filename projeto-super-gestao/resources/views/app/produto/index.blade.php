@@ -21,9 +21,13 @@
                         <th>Descrição</th>
                         <th>Peso</th>
                         <th>Unidade_id</th>
+                        <th>Fornecedor</th>
                         <th>Comprimento</th>
                         <th>Altura</th>
                         <th>Largura</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -35,6 +39,7 @@
                             <td>{{$valor->descricao}}</td>
                             <td>{{$valor->peso}}</td>
                             <td>{{$valor->unidade_id}}</td>
+                            <td>{{$valor->fornecedor->nome}}</td>
                             <td>{{$valor->produtoDetalhe->comprimento ?? ''}}</td>
                             <td>{{$valor->produtoDetalhe->altura ?? ''}}</td>
                             <td>{{$valor->produtoDetalhe->largura ?? ''}}</td>
