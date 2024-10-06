@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fornecedor;
 use App\Models\Produto;
 use App\Models\Unidade;
 use Illuminate\Http\Request;
@@ -24,8 +25,9 @@ class ProdutoController extends Controller
      */
     public function create()
     {
+        $fornecedores = Fornecedor::all();
         $unidade = Unidade::all();
-        return view('app.produto.create', ['unidade' => $unidade]);
+        return view('app.produto.create', ['unidade' => $unidade, 'fornecedores' => $fornecedores]);
     }
 
     /**
@@ -37,7 +39,8 @@ class ProdutoController extends Controller
             'nome' => 'required|min:3|max:40',
             'descricao' => 'required|min:3|max:2000',
             'peso' => 'required|integer',
-            'unidade_id' => 'exists:unidades,id'
+            'unidade_id' => 'exists:unidades,id',
+            'fornecedor_id' => 'exists:fornecedores,id'
         ];
 
         $feedback = [
@@ -46,7 +49,8 @@ class ProdutoController extends Controller
             'nome.max' => 'O nome deve conter no máximo 40 caracteres',
             'descricao.max' => 'A descrição deve conter no máximo 2000 caracteres',
             'peso.integer' => 'caracter inválido',
-            'unidade_id.exists' => 'Selecione um opção válida'
+            'unidade_id.exists' => 'Selecione um opção válida',
+            'fornecedor_id.exists' => 'Selecione um opção'
         ];
 
         $request->validate($regra, $feedback);
@@ -69,7 +73,9 @@ class ProdutoController extends Controller
     public function edit(Produto $produto)
     {
         $unidade = Unidade::all();
-        return view('app.produto.edit', ['produto' => $produto, 'unidade' => $unidade]);
+        $fornecedores = Fornecedor::all();
+        //dd($fornecedores);
+        return view('app.produto.edit', ['produto' => $produto, 'unidade' => $unidade, 'fornecedores' => $fornecedores]);
         //return view('app.produto.create', ['produto' => $produto, 'unidade' => $unidade]);
     }
 
@@ -78,6 +84,27 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
+        $regra = [
+            'nome' => 'required|min:3|max:40',
+            'descricao' => 'required|min:3|max:2000',
+            'peso' => 'required|integer',
+            'unidade_id' => 'exists:unidades,id',
+            'fornecedor_id' => 'exists:fornecedores,id'
+        ];
+
+        $feedback = [
+            'required' => 'O campo :attribute deve ser preenchido',
+            'min' => 'O campo :attribute deve possuir no mínimo 3 caracteres',
+            'nome.max' => 'O nome deve conter no máximo 40 caracteres',
+            'descricao.max' => 'A descrição deve conter no máximo 2000 caracteres',
+            'peso.integer' => 'caracter inválido',
+            'unidade_id.exists' => 'Selecione um opção válida',
+            'fornecedor_id.exists' => 'Selecione um opção'
+        ];
+
+        $request->validate($regra, $feedback);
+
+        //dd($produto);
         $produto->update($request->all());
         return redirect()->route('produto.show', ['produto' => $produto->id]);
     }

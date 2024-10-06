@@ -3,7 +3,7 @@
 @section('conteudo')
     <div class="conteudo-pagina">
         <div class="titulo-pagina2">
-            <h1>Produto - novo</h1>
+            <h1>Produto - Editar</h1>
         </div>
 
         <div class="menu">
@@ -14,7 +14,7 @@
         </div>
 
         <div class="informacao-pagina">
-            @component('app.produto._components.form_create_edit', ['produto' => $produto, 'unidade' => $unidade])
+            @component('app.produto._components.form_create_edit', ['produto' => $produto, 'unidade' => $unidade, 'fornecedores' => $fornecedores])
                 
             @endcomponent
         </div>  
