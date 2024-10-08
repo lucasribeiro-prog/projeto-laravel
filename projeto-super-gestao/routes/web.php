@@ -25,6 +25,10 @@ Route::middleware(['autenticacao:padrao'])->prefix('/app')->group(function() {
     Route::get('/fornecedor/listar', [\App\Http\Controllers\FornecedorController::class, 'listar'])->name('app.fornecedor.listar');
     Route::get('/fornecedor/editar{id}', [\App\Http\Controllers\FornecedorController::class, 'editar'])->name('app.fornecedor.editar');
 
+    Route::resource('/cliente', \App\Http\Controllers\ClienteController::class);
+    Route::resource('/pedido', \App\Http\Controllers\PedidoController::class);
+    Route::resource('/pedido-produto', \App\Http\Controllers\PedidoProdutoController::class);
+
     //produtos
     Route::resource('produto', \App\Http\Controllers\ProdutoController::class);
 
