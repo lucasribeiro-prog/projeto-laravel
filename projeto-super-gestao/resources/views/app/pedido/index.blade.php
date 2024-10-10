@@ -22,6 +22,7 @@
                         <th></th>
                         <th></th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -31,6 +32,7 @@
                         <tr>
                             <td>{{$value->id}}</td>
                             <td>{{$value->cliente_id}}</td>
+                            <td><a href="{{route('app.pedido-produto.create', ['pedido' => $value->id])}}">Adicionar</a></td>
                             <td><a href="">Visualizar</a></td>
                             <td>
                                 <form id="form_{{$value->id}}" action="{{route('pedido.destroy', ['pedido' => $value->id])}}" method="POST">
