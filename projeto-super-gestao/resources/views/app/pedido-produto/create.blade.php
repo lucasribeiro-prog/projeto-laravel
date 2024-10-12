@@ -19,6 +19,24 @@
         <p style="color:black">ID Pedido: {{$pedido->id}}</p>
         <p style="color:black">Cliente: {{$pedido->cliente_id}}</p>
 
+        <h4>Itens do pedido</h4>
+        <table class="tabela-pedidos">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome do produto</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($pedido->produtos as $value)
+                    <tr>
+                        <td>{{$value->id}}</td>
+                        <td>{{$value->nome}}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
         <div class="informacao-pagina">
             @component('app.pedido-produto._components.form_create', ['pedido' => $pedido, 'produto' => $produto])
                 
