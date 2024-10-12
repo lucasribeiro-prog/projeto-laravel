@@ -16,6 +16,9 @@ class ProdutoController extends Controller
     public function index(Request $request)
     {
         $produto = Produto::paginate(15);
+        /*foreach ($produto as $value) {
+            dd($value->pedidos); // Aqui você pode ver os 'pedidos' de cada 'produto'
+        }*/
 
         return view('app.produto.index', ['produto' => $produto, 'request' => $request->all()]);
     }
